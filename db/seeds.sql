@@ -1,5 +1,5 @@
-INSERT INTO employees (first_name, last_name, email, phone, job_title, department_id) 
-VALUES ('John', 'Doe', 'doe.john@dj.com', '123-456-7890', 'Manager', 1),
-       ('Jane', 'Snow', 'snow.jane@sj.com', '098-765-4321', 'Assistant Manager', 1),
-       ('Jack', 'Black', 'black.jack@bj.com', '456-789-0123', 'Employee', 1),
-       ('Jill', 'White', 'white.jill@wj.com', '789-012-3456', 'Employee', 1);
+INSERT INTO department (name) VALUES ('Sales'), ('Engineering'), ('Finance');
+
+INSERT INTO role (title, salary, department_id) VALUES ('Sales Manager', 75000, 1), ('Software Engineer', 100000, 2), ('Accountant', 60000, 3);
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('John', 'Doe', 1, null), ('Jane', 'Smith', 2, 1), ('Emily', 'Jones', 3, null);
