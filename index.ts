@@ -1,4 +1,13 @@
 import inquirer from "inquirer";
+import {
+  viewDepartments,
+  viewRoles,
+  viewEmployees,
+  addDepartment,
+  addRole,
+  addEmployee,
+  updateEmployeeRole,
+} from "./src/queries";
 
 function promptUser(): void {
   inquirer
@@ -19,7 +28,35 @@ function promptUser(): void {
         ],
       },
     ])
-    .then((answers) => {
+    .then((answers: { action: string }) => {
+      switch (answers.action) {
+        case "View All Departments":
+          viewDepartments();
+          break;
+        case "View All Roles":
+          viewRoles();
+          break;
+        case "View All Employees":
+          viewEmployees();
+          break;
+        case "Add Department":
+          addDepartment();
+          break;
+        case "Add Role":
+          addRole();
+          break;
+        case "Add Employee":
+          addEmployee();
+          break;
+        case "Update Employee Role":
+          updateEmployeeRole();
+          break;
+        case "Exit":
+          console.log("Goodbye!");
+          process.exit();
+      }
       console.log(answers);
     });
 }
+
+export default promptUser;
