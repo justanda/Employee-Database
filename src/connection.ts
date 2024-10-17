@@ -1,4 +1,4 @@
-import pg from "../node_modules/pg";
+import pg from "pg";
 const { Pool } = pg;
 
 const pool = new Pool({
