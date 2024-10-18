@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 // const { Pool } = pg;
-import promptUser from "./index";
-import pool from "./connection";
+import { promptUser } from "./index.js";
+import { pool } from "./connection.js";
 
 interface Department {
   id: number;
@@ -23,30 +23,30 @@ interface Employee {
   manager_id?: number;
 }
 
-function viewDepartments(): void {
+export const viewDepartments = function (): void {
   pool.query("SELECT * FROM department", (err: Error, res: any) => {
     if (err) throw err;
     console.table(res.rows);
     promptUser();
   });
-}
+};
 
-function viewRoles(): void {
+export const viewRoles = function (): void {
   pool.query("SELECT * FROM role", (err: Error, res: any) => {
     if (err) throw err;
     console.table(res.rows);
     promptUser();
   });
-}
-function viewEmployees(): void {
+};
+export const viewEmployees = function (): void {
   pool.query("SELECT * FROM employee", (err: Error, res: any) => {
     if (err) throw err;
     console.table(res.rows);
     promptUser();
   });
-}
+};
 
-function addDepartment(): void {
+export const addDepartment = function (): void {
   inquirer
     .prompt([
       {
@@ -66,9 +66,9 @@ function addDepartment(): void {
         }
       );
     });
-}
+};
 
-function addRole(): void {
+export const addRole = function (): void {
   pool.query("SELECT * FROM department", (err: Error, res: any) => {
     if (err) throw err;
     const departments: { name: string; value: number }[] = res.rows.map(
@@ -111,9 +111,9 @@ function addRole(): void {
         }
       );
   });
-}
+};
 
-function addEmployee(): void {
+export const addEmployee = function (): void {
   pool.query("SELECT * FROM role", (err: Error, res: any) => {
     if (err) throw err;
     const roles: { name: string; value: number }[] = res.rows.map(
@@ -182,9 +182,9 @@ function addEmployee(): void {
         );
     });
   });
-}
+};
 
-function updateEmployeeRole(): void {
+export const updateEmployeeRole = function (): void {
   pool.query("SELECT * FROM employee", (err: Error, res: any) => {
     if (err) throw err;
     const employees: { name: string; value: number }[] = res.rows.map(
@@ -231,14 +231,4 @@ function updateEmployeeRole(): void {
         });
     });
   });
-}
-const functions = {
-  viewDepartments,
-  viewEmployees,
-  viewRoles,
-  addDepartment,
-  addRole,
-  addEmployee,
-  updateEmployeeRole,
 };
-export default functions;

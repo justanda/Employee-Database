@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+
 import {
   viewDepartments,
   viewRoles,
@@ -7,7 +8,7 @@ import {
   addRole,
   addEmployee,
   updateEmployeeRole,
-} from "./src/queries";
+} from "./queries.js";
 
 function promptUser(): void {
   inquirer
@@ -59,4 +60,6 @@ function promptUser(): void {
     });
 }
 
-export default promptUser;
+promptUser();
+
+export { promptUser };

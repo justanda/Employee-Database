@@ -1,32 +1,32 @@
 import inquirer from "inquirer";
 // const { Pool } = pg;
-import promptUser from "./index";
-import pool from "./connection";
-export function viewDepartments() {
+import { promptUser } from "./index.js";
+import { pool } from "./connection.js";
+export const viewDepartments = function () {
     pool.query("SELECT * FROM department", (err, res) => {
         if (err)
             throw err;
         console.table(res.rows);
         promptUser();
     });
-}
-export function viewRoles() {
+};
+export const viewRoles = function () {
     pool.query("SELECT * FROM role", (err, res) => {
         if (err)
             throw err;
         console.table(res.rows);
         promptUser();
     });
-}
-export function viewEmployees() {
+};
+export const viewEmployees = function () {
     pool.query("SELECT * FROM employee", (err, res) => {
         if (err)
             throw err;
         console.table(res.rows);
         promptUser();
     });
-}
-export function addDepartment() {
+};
+export const addDepartment = function () {
     inquirer
         .prompt([
         {
@@ -43,8 +43,8 @@ export function addDepartment() {
             promptUser();
         });
     });
-}
-export function addRole() {
+};
+export const addRole = function () {
     pool.query("SELECT * FROM department", (err, res) => {
         if (err)
             throw err;
@@ -80,8 +80,8 @@ export function addRole() {
             });
         });
     });
-}
-export function addEmployee() {
+};
+export const addEmployee = function () {
     pool.query("SELECT * FROM role", (err, res) => {
         if (err)
             throw err;
@@ -136,8 +136,8 @@ export function addEmployee() {
             });
         });
     });
-}
-export function updateEmployeeRole() {
+};
+export const updateEmployeeRole = function () {
     pool.query("SELECT * FROM employee", (err, res) => {
         if (err)
             throw err;
@@ -177,4 +177,4 @@ export function updateEmployeeRole() {
             });
         });
     });
-}
+};
