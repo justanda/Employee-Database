@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, } from "./queries.js";
+import { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole, updateEmployeeManager, viewEmployeesByManager, viewEmployeesByDepartment, viewDepartmentBudget, deleteDepartment, deleteRole, deleteEmployee, } from "./queries.js";
 function promptUser() {
     inquirer
         .prompt([
@@ -14,7 +14,14 @@ function promptUser() {
                 "Add Department",
                 "Add Role",
                 "Add Employee",
+                "Update Employee Manager",
+                "View Employees by Manager",
+                "View Employees by Department",
+                "View Department Budget",
                 "Update Employee Role",
+                "Delete Department",
+                "Delete Role",
+                "Delete Employee",
                 "Exit",
             ],
         },
@@ -41,6 +48,27 @@ function promptUser() {
                 break;
             case "Update Employee Role":
                 updateEmployeeRole();
+                break;
+            case "Update Employee Manager":
+                updateEmployeeManager();
+                break;
+            case "View Employees by Manager":
+                viewEmployeesByManager();
+                break;
+            case "View Employees by Department":
+                viewEmployeesByDepartment();
+                break;
+            case "View Department Budget":
+                viewDepartmentBudget();
+                break;
+            case "Delete Department":
+                deleteDepartment();
+                break;
+            case "Delete Role":
+                deleteRole();
+                break;
+            case "Delete Employee":
+                deleteEmployee();
                 break;
             case "Exit":
                 console.log("Goodbye!");
